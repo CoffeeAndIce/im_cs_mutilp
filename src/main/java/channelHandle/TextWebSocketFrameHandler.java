@@ -147,7 +147,10 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
                                         RedisUtil.getHashMethod().hset(ChatFlag.CHAT_RELATE + userId, sellerId, infoCache);
                                     }
                                     //消息记录缓存
+                                    //己方对话保存
                                     RedisUtil.getHashMethod().hset(ChatFlag.CHAT_MSG + userId + ":" + sellerId, LocalDateTime.now().withNano(0).toString(), text);
+                                    //对方对话保存
+                                    RedisUtil.getHashMethod().hset(ChatFlag.CHAT_MSG + sellerId + ":" + userId, LocalDateTime.now().withNano(0).toString(), text);
                                     //对话的用户
                                     msgContent.setData(selfInfoCache);
                                     next.writeAndFlush(new TextWebSocketFrame(JSONObject.toJSONString(msgContent)).retain());
@@ -157,7 +160,10 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
                         }
                         if (!founded) {
                             //消息记录缓存
+                            //己方对话保存
                             RedisUtil.getHashMethod().hset(ChatFlag.CHAT_MSG + userId + ":" + sellerId, LocalDateTime.now().withNano(0).toString(), text);
+                            //对方对话保存
+                            RedisUtil.getHashMethod().hset(ChatFlag.CHAT_MSG + sellerId + ":" + userId, LocalDateTime.now().withNano(0).toString(), text);
                             //没有信道，保存离线信息
                             RedisUtil.getHashMethod().hset(ChatFlag.OUT_LINE + sellerId, LocalDateTime.now().withNano(0).toString(), text);
                             ctx.writeAndFlush(new TextWebSocketFrame(notHererReason[random.nextInt(notHererReason.length)]));
@@ -165,7 +171,10 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 
                     } else {
                         //消息记录缓存
+                        //己方对话保存
                         RedisUtil.getHashMethod().hset(ChatFlag.CHAT_MSG + userId + ":" + sellerId, LocalDateTime.now().withNano(0).toString(), text);
+                        //对方对话保存
+                        RedisUtil.getHashMethod().hset(ChatFlag.CHAT_MSG + sellerId + ":" + userId, LocalDateTime.now().withNano(0).toString(), text);
                         //没有信道，保存离线信息
                         RedisUtil.getHashMethod().hset(ChatFlag.OUT_LINE + sellerId, LocalDateTime.now().withNano(0).toString(), text);
                         ctx.writeAndFlush(new TextWebSocketFrame(notHererReason[random.nextInt(notHererReason.length)]));
