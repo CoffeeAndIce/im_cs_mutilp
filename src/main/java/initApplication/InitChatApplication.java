@@ -34,7 +34,8 @@ public final class InitChatApplication {
     public void run(){
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+            serverBootstrap.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new WebSocketChannelInitializer(channelGroup));
 

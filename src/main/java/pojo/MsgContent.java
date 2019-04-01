@@ -1,16 +1,27 @@
 package pojo;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author: Coffeeanice
  * @Description: TODO: 消息体属性
  * @Date: 2019/2/27 16:08
  */
-public class MsgContent {
+public class MsgContent implements Serializable {
+    /**
+     * 在线用户信息获取
+     */
+    private String onLine;
 
     /**
-     * 消息类型 ， 1 = 商户，2 = 普通用户
+     * 是否已读  1 = 已读，2 = 未读
+     */
+    private Integer onRead;
+    /**
+     * 消息类型  1= 初始化心跳 2 = 普通消息 3 = 上线信息 4 = 离线信息 5 = 系统广播消息
      */
     private Integer msgType;
     /**
@@ -44,7 +55,7 @@ public class MsgContent {
      */
     private String relateNet;
     /**
-     *离线数据
+     * 离线数据
      */
     private String offLine;
 
@@ -112,10 +123,28 @@ public class MsgContent {
         this.relateNet = relateNet;
     }
 
+    public Integer getOnRead() {
+        return onRead;
+    }
+
+    public void setOnRead(Integer onRead) {
+        this.onRead = onRead;
+    }
+
+    public String getOnLine() {
+        return onLine;
+    }
+
+    public void setOnLine(String onLine) {
+        this.onLine = onLine;
+    }
+
     @Override
     public String toString() {
         return "MsgContent{" +
-                "msgType=" + msgType +
+                "onLine='" + onLine + '\'' +
+                ", onRead=" + onRead +
+                ", msgType=" + msgType +
                 ", msg='" + msg + '\'' +
                 ", userId='" + userId + '\'' +
                 ", sellerId='" + sellerId + '\'' +

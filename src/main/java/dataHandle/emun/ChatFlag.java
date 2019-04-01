@@ -10,7 +10,7 @@ public interface ChatFlag {
     /**
      * 读超时
      */
-    public static final int READ_IDLE_TIME_OUT = 300;
+    public static final int READ_IDLE_TIME_OUT = 600;
 
     /**
      * 写超时
