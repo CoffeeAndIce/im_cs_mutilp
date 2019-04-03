@@ -47,11 +47,7 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-        //是否握手成功，升级为 Websocket 协议
         if (evt == WebSocketServerProtocolHandler.ServerHandshakeStateEvent.HANDSHAKE_COMPLETE) {
-            // 握手成功，移除 HttpRequestHandler，因此将不会接收到任何消息
-            // 并把握手成功的 Channel 加入到 ChannelGroup 中
-//            group.writeAndFlush(new TextWebSocketFrame("Client " + ctx.channel() + " joined"));
             group.add(ctx.channel());
         } else if (evt instanceof IdleStateEvent) {
             IdleStateEvent stateEvent = (IdleStateEvent) evt;
@@ -66,7 +62,6 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
-        //增加消息的引用计数（保留消息），并将他写到 ChannelGroup 中所有已经连接的客户端
         Channel channel = ctx.channel();
         try {
             String text = msg.text();
@@ -82,7 +77,6 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
                 idList.put(channelId, userId);//补充内容
                 String msgs = msgContent.getMsg();
                 if (ChatFlag.HEART_FLAG.equals(msgs)) {
-                    //初始化用户信息
                     /**
                      * 简略判断，根据SellerId是否需要加载历史好友列表，返回的数据类型也不一致
                      */
@@ -248,9 +242,9 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
      */
     private void _saveCommucationReCode(String text, String userId, String sellerId) {
         //己方对话保存
-        RedisUtil.getHashMethod().hset(ChatFlag.CHAT_MSG + userId + ":" + sellerId, LocalDateTime.now().withNano(0).toString(), text);
+        RedisUtil.getListsMethod().rpush(ChatFlag.CHAT_MSG + userId + ":" + sellerId, text);
         //对方对话保存
-        RedisUtil.getHashMethod().hset(ChatFlag.CHAT_MSG + sellerId + ":" + userId, LocalDateTime.now().withNano(0).toString(), text);
+        RedisUtil.getListsMethod().rpush(ChatFlag.CHAT_MSG + sellerId + ":" + userId, text);
     }
 
     /**
