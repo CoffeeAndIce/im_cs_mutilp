@@ -1,0 +1,235 @@
+@charset "UTF-8";
+body {
+    background: url("huaji.jpg") no-repeat;
+    background-size: cover;
+}
+
+/* CSS的第二种指定方法，类 class="box"  .box*/
+.box {
+    width: 700px;
+    height: 600px;
+    left: 50%;
+    top: 50%;
+    margin-left: -350px;
+    margin-top: -300px;
+    background: #fff;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 10px;
+    position: fixed;
+    z-index: 999;
+}
+
+.header {
+    height: 60px;
+    background: #168fed;
+    position: relative;
+}
+
+.header .logo {
+    width: 400px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.header .hide {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fff;
+    font-size: 16px;
+    float: right;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    box-shadow: 0px 0px 5px #000;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.header .hide:hover {
+    width: 35px;
+    height: 35px;
+    font-size: 17px;
+    line-height: 35px;
+}
+
+.center {
+    height: 400px;
+    background: #fff;
+    padding: 10px;
+    overflow: auto;
+}
+
+.send {
+    height: 140px;
+    border-top: 1px solid #eee;
+}
+
+/*指定ID=sendcONTENT的元素样式*/
+#sendContent {
+    width: 460px;
+    height: 70px;
+    border: none;
+    outline: medium;
+    margin-left: 25px;
+    resize: none;
+    margin-top: 10px;
+}
+
+.center_right .left {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    word-break: break-all;
+}
+
+.center_right .msg {
+    max-width: 80%;
+    text-align: left;
+    color: #ff6600;
+}
+
+.center_right .right {
+    float: right;
+    text-align: right;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: right;
+    word-break: break-all;
+}
+
+.right img {
+    border-radius: 50%;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.center_left {
+    width: 180px;
+    float: left;
+    height: 100%;
+    background: #f7f7f7;
+}
+
+.center_right {
+    float: left;
+    width: 520px;
+}
+
+.user_list {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.user_list li.active {
+    background: #ddd;
+}
+
+.user_list li {
+    border-bottom: 1px solid #ddd;
+    padding: 5px 10px;
+}
+
+.user_list li img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.user_list li a {
+    float: right;
+    margin-top: 11px;
+    color: #999;
+    display: none;
+}
+
+.user_list li a:hover {
+    color: #f42121;
+}
+
+.user_list li.active:hover {
+    background: #ddd;
+}
+
+.user_list li:hover {
+    background: #eee;
+}
+
+.user_list li:hover > a {
+    display: block;
+}
+
+.user_list span{
+    display: inline-block;
+    max-width: 88px;
+    vertical-align: middle;
+}
+.center_box {
+    height: 540px;
+}
+
+.center_right img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.chat_content {
+    height: 400px;
+    padding: 10px 15px;
+    overflow-y: scroll;
+}
+
+.bottom button {
+    width: 55px;
+    text-align: center;
+    background: #0188fb;
+    color: #fff;
+    border: 0;
+    line-height: 24px;
+    border-radius: 3px;
+}
+
+.bottom button:hover {
+    background: #289cff;
+}
+
+.bottom {
+    padding: 10px 20px;
+    text-align: right;
+}
+
+.center_right .left img {
+    float: left;
+}
+
+.center_right .left .msg {
+    float: left;
+    margin: 8px 0 0 7px;
+}
+
+.center_right .right img {
+    float: right;
+}
+
+.center_right .right .msg {
+    float: right;
+    margin: 8px 7px 0 0;
+}
+
+.time {
+    color: #999;
+}
+
+.chat_box {
+    height: 400px;
+    overflow: hidden;
+}

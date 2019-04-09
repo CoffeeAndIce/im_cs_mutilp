@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--窗体面板 START-->
+
+<DIV class="chat_div">
+
+    <!--对话框的头部 END-->
+    <DIV class="header">
+        <div class="logo"><img src="huaji.png"/></div>
+        <i title="关闭聊天窗" class="fa fa-close" onclick="chatOff();"></i>
+    </DIV>
+    <!--聊天内容 START-->
+    <div class=" center_box clearfloat">
+        <div class="center_left">
+            <ul class="user_list">
+
+            </ul>
+        </div>
+        <DIV class='center_right'>
+            <div class="chat_box">
+
+            </div>
+            <!--底部区域 START-->
+            <DIV class="send">
+                <div class="ope_div">
+
+                    <span class="send_img fa fa-file-image-o" title="发送图片"></span>
+                    <span class="history_list" title="显示消息记录" onclick="openHistoryList();">消息记录</span>
+                </div>
+                <div>
+                    <textarea type="text" id="sendContent" placeholder="请输入内容" autofocus="autofocus"></textarea>
+                </div>
+                <div class="bottom">
+                    <button class="sendit">发送</button>
+                </div>
+            </DIV>
+            <!--底部区域 END-->
+        </DIV>
+    </div>
+    <!--聊天内容 END-->
+</DIV>
+<div id="closeHistoryList" class="chat_history_list">
+    <div>
+        <span class="seller_name">商家名称</span>
+        <div class="opeate_div">
+            <i onclick="closeHistoryList();" class="fa fa-minus"></i>
+            <i onclick="closeHistoryList();" class="fa fa-close close-btn"></i>
+        </div>
+        <div class="search_list_box">
+            <input class="search_input" type="text" placeholder="搜索">
+        </div>
+        <div class="history_list_content">
+            <ul>
+                <li class="clearfloat">
+                    <div class="avatar">
+                        <img src="huaji.png"/>
+                    </div>
+                    <div class="content">
+                        <div class="content_top">
+                            <span>名字</span>
+                            <span class="date">2019/03/22</span>
+                        </div>
+                        <div class="content_main">您好啊</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script type="application/javascript" src="js/chat.js" ></script>
+</html>
